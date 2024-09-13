@@ -1,0 +1,16 @@
+.owner-avatar {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.owner-circle {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    line-height: 25px;
+}

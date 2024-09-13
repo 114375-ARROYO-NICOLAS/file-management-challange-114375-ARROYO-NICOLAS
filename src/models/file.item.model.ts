@@ -1,4 +1,5 @@
 export interface FileItem {
+  selected: any;
   id: string;
   name: string;
   creation: Date;

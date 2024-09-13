@@ -41,6 +41,7 @@ export const FILE_LIST: FileItem[] = [
     creation: new Date(),
     type: FileType.FILE,
     owners: [owner1, owner2],
+    selected: undefined
   },
   {
     id: '95',
@@ -48,6 +49,7 @@ export const FILE_LIST: FileItem[] = [
     creation: new Date(),
     type: FileType.FOLDER,
     owners: [owner4],
+    selected: undefined
   },
   {
     id: '99',
@@ -55,6 +57,7 @@ export const FILE_LIST: FileItem[] = [
     creation: new Date(),
     type: FileType.FOLDER,
     owners: [],
+    selected: undefined
   },
   {
     id: '3',
@@ -62,6 +65,7 @@ export const FILE_LIST: FileItem[] = [
     creation: new Date(),
     type: FileType.FILE,
     owners: [owner3, owner4, owner5, owner1],
+    selected: undefined
   },
   {
     id: '2',
@@ -69,6 +73,7 @@ export const FILE_LIST: FileItem[] = [
     creation: new Date(),
     type: FileType.FILE,
     owners: [],
+    selected: undefined
   },
   {
     id: '45',
@@ -76,6 +81,7 @@ export const FILE_LIST: FileItem[] = [
     creation: new Date(),
     type: FileType.FOLDER,
     owners: [...OWNERS],
+    selected: undefined
   },
   {
     id: '5',
@@ -84,6 +90,7 @@ export const FILE_LIST: FileItem[] = [
     type: FileType.FILE,
     owners: [],
     parentId: '45',
+    selected: undefined
   },
   {
     id: '7',
@@ -92,6 +99,7 @@ export const FILE_LIST: FileItem[] = [
     type: FileType.FILE,
     owners: [],
     parentId: '45',
+    selected: undefined
   },
   {
     id: '9',
@@ -100,6 +108,7 @@ export const FILE_LIST: FileItem[] = [
     type: FileType.FILE,
     owners: [],
     parentId: '45',
+    selected: undefined
   },
   {
     id: '88',
@@ -108,5 +117,6 @@ export const FILE_LIST: FileItem[] = [
     type: FileType.FILE,
     owners: [],
     parentId: '99',
+    selected: undefined
   },
 ];

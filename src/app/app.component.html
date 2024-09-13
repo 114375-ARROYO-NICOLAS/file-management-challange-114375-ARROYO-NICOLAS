@@ -1,1 +1,78 @@
-add code here!!
+<h2>Gestor de Archivos</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Seleccionar</th>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Fecha de Creación</th>
+            <th>Dueños</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (item of sortedfiles; track item.id) {
+        <tr>
+            <td><input type="checkbox" [(ngModel)]="item.selected"></td>
+            <td [title]="item.name.length > 10 ? item.name : ''">
+                {{ item.name.length > 10 ? item.name.slice(0, 10) + '...' : item.name }}
+            </td>
+            <td>{{ item.type === FileType.FOLDER ? 'Carpeta' : 'Archivo' }}</td>
+            <td>{{ item.creation | date:'short' }}</td>
+            <td>
+                @for (owner of item.owners.slice(0, 3); track owner.name) {
+                <img [src]="owner.avatarUrl" [alt]="owner.name" class="owner-avatar" [title]="owner.name">
+                }
+                @if (item.owners.length > 3) {
+                <span class="owner-circle">+{{ item.owners.length - 3 }}</span>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<button (click)="deleteSelected()">Borrar Seleccionados</button>
+<button (click)="showNewItemForm = true">Nuevo</button>
+
+@if (showNewItemForm) {
+<form (ngSubmit)="addNewItem()">
+    <div>
+        <label for="name">Nombre:</label>
+        <input id="name" [(ngModel)]="newItem.name" name="name" required>
+    </div>
+    <div>
+        <label for="date">Fecha de Creación:</label>
+        <input id="date" type="date" [(ngModel)]="newItem.creation" name="creation" required>
+    </div>
+    <div>
+        <label for="type">Tipo:</label>
+        <select id="type" [(ngModel)]="newItem.type" name="type" required>
+            <option [value]="FileType.FILE">Archivo</option>
+            <option [value]="FileType.FOLDER">Carpeta</option>
+        </select>
+    </div>
+    @if (newItem.type === FileType.FILE) {
+    <div>
+        <label for="parentFolder">Carpeta Padre:</label>
+        <select id="parentFolder" [(ngModel)]="newItem.parentId" name="parentId">
+            <option [value]="undefined">Raíz</option>
+            @for (folder of folders; track folder.id) {
+            <option [value]="folder.id">{{ folder.name }}</option>
+            }
+        </select>
+    </div>
+    }
+    <div>
+        <label for="owners">Dueños:</label>
+        @for (owner of OWNERS; track owner.name) {
+        <label>
+            <input type="checkbox" [value]="owner" (change)="toggleOwner(owner)" [checked]="isOwnerSelected(owner)">
+            {{ owner.name }}
+        </label>
+        }
+    </div>
+    <button type="submit">Agregar</button>
+    <button type="button" (click)="showNewItemForm = false">Cancelar</button>
+</form>
+}
